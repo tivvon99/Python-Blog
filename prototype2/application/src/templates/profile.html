@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hello {{ email }}</h1>
+
+    {% for blog in blogs %}
+    <div class="container-md">
+        <h3><a href="/posts/{{ blog._id }}">{{ blog.title }}</a></h3>
+        <p>Description: {{ blog.description }}</p>
+        
+        <hr>
+    </div>
+    {% endfor %}
+
+{% endblock %}
+
+<!-- Need to add functionality to show all blogs -->

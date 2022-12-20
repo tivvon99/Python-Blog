@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<h1 class="intro">
+		Welcome to the site!
+	</h1>
+
+	<div class="row mb-3 text-center">
+		<div class="col-6 themed-grid-col">
+			<p class="bio">
+				My name is Tivvon and I am a senior, Computer Science student
+				at Florida Atlantic University. Go Owls.
+			</p>
+			<p class="bio">
+				I am passionate about creating robust projects with
+				efficient implementations to provide its users with
+				the most possible convenvience.
+			</p>
+		</div>
+		<div class="col-6 themed-grid-col">
+			<img src="/static/img/headshot.JPG" class="img-fluid" alt="Responsive image"/>
+		</div>
+	</div>
+
+	<!-- End of content wrapper 1 -->
+
+<div class="content-wrapper-2">
+	<h1 class="intro">
+		What are some of the features of this website?
+	</h1>
+
+	<div class="row mb-3 text-center">
+		<div class="col-md-4 themed-grid-col">
+			<p class="bio">
+				This website offers a fully interactive blog, where
+				users can connect, post, and retrieve information
+				amongst their fellow users. Sign up for an account and
+				come contribute some content. We would love to know
+				what is on your mind.
+			</p>
+		</div>
+		<div class="col-md-4 themed-grid-col">
+			<p class="bio">
+				Access to the latest and most popular news headlines while you
+				relax and scroll. This website utilizes API keys and datascraping
+				to provide up-to-date news information. 
+			</p>
+		</div>
+		<div class="col-md-4 themed-grid-col">
+			<p class ="bio">
+				A complete virtual interface to submitting project inquiries to me.
+				All information and transactions are kept safe and secured through a well protected
+				database and private web server. Free feel to use the blog to speak
+				on your experience or any personal feelings about the implementations.
+			</p>
+		</div>
+	</div>
+
+	<p class="bio">
+		Next Level Architecture is built on a Flask Web Framework.
+		It supports its own database and web server built by me.
+		Meaning this website is built and managed by me along with
+		all of its information as well.
+	</p>
+</div>	<!-- End of content wrapper 2 -->
+
+<div class="container-wrapper-3">
+	<div class="container">
+		<div class="row">
+			<div class="col align-self-start">
+				<img src="/static/img/flasklogo.png" class="img-responsive" alt="flask logo">
+			One of three columns
+			</div>
+			<div class="col align-self-center">
+				<img src="/static/img/flasklogo.png" class="img-responsive" alt="flask logo">
+			One of three columns
+			</div>
+			<div class="col align-self-end">
+				<img src="/static/img/flasklogo.png" class="img-responsive" alt="flask logo">
+			One of three columns
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container-wrapper-4">
+	<h1 class="mx-4 my-0 text-center">Latest News</h1>
+{% for new, des, i in context %}
+	<div class="container-md">  
+		<div class="image-block-inner">
+			<img src="{{i}}" alt="" class="img-responsive w-100">
+		</div>
+		<div class="news-content">
+			<h4 class="mt-3"><a href="#">Headline: </a></h4> {{new}}
+			<!--  <p></p> -->
+			<a href="#" class="read-more">Read more ></a>
+		</div>
+		<!-- .image-block-inner -->
+	</div>
+  {% endfor %}
+{% endblock %}
+</div>
+
+</body>
+<html>
