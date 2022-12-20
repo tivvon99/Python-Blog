@@ -39,11 +39,12 @@ def profile():
     if not session.get("email"):
         return redirect("/login")
     
+    # display all of a user blogs for them
     user  = User.get_by_email(session['email'])
     blogs = user.get_blogs()
     
+    
     return render_template('profile.html', email=session['email'], blogs=blogs)
-
 
 
 @main.route('/blogs/<string:user_id>')
@@ -72,7 +73,44 @@ def create_new_blog():
         new_blog.save_to_mongo()
 
         return make_response(user_blogs(user._id))
+    
+@main.route('/blog/delete', methods=['GET', 'POST'])
+def remove_blog():
+    if request.method == 'GET':
+        
+        user = User.get_by_email(session['email'])
+        blogs = user.get_blogs()
+        
+        return render_template('remove_blog.html', blogs=blogs)
+    else:
+        # get blog id
+        blog_id = request.form['blog_id']
+        # find blog
+        blog = Blog.from_mongo(blog_id)
+        # remove it from the db
+        blog.remove_from_mongo()
+        
+        return redirect(url_for('main.profile'))
 
+# to show blogs from all users to each other
+@main.route('/blogs/all')
+def display_all_blogs():
+    users = []
+    blogs = []
+    
+    # counts the amount of users in the db
+    count = Database.DATABASE['users'].count_documents({})
+    print(count)
+    
+    users = [None] * count
+    for i in range(count):  # 2 rn
+        # all users
+        users[i] = Database.DATABASE['users'].find({})
+    
+    print(users)
+        
+    return render_template("all_blogs.html", count=count, users=users)
+    
 
 @main.route('/posts/<string:blog_id>')
 def blog_posts(blog_id):

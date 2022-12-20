@@ -1,16 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hello {{ email }}</h1>
 
-    {% for blog in blogs %}
-    <div class="container-md">
-        <h3><a href="/posts/{{ blog._id }}">{{ blog.title }}</a></h3>
-        <p>Description: {{ blog.description }}</p>
-        
-        <hr>
-    </div>
-    {% endfor %}
+    {% if not blogs %}
+
+    <h1>Looks like you don't have any blogs yet.</h1>
+
+    <a href="/blogs/new">
+        <button type="submit" class="btn btn-success btn-rounded">
+            Create a new blog.
+        </button>
+    </a>
+    <a href="/blogs/all">
+        <button type="submit" class="btn btn-success btn-rounded">
+            Create a new blog.
+        </button>
+    </a>
+
+    {% else %}
+
+        {% for blog in blogs %}
+        <div class="container-md">
+            <h3><a href="/posts/{{ blog._id }}">{{ blog.title }}</a></h3>
+            <p>{{ blog.description }}</p>
+
+            
+            <a href="/blog/delete">
+                <button type="submit" class="btn btn-success btn-rounded">
+                    Delete Blog
+                </button>
+            </a>
+            
+            <hr>
+        </div>
+        {% endfor %}
+    
+    {% endif %}
 
 {% endblock %}
 

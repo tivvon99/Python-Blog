@@ -7,12 +7,14 @@ __author__ = 'Tivvon'
 
 
 class Blog(object):
-    def __init__(self, author, title, description, author_id, _id=None):
+    def __init__(self, author, title, description, author_id, _id=None, date=datetime.datetime.utcnow()):
         self.author = author
         self.author_id = author_id
         self.title = title
         self.description = description
         self._id = uuid.uuid4().hex if _id is None else _id
+        # added time created to my blog class
+        self.created_date = date
 
     def new_post(self, title, content, date=datetime.datetime.utcnow()):
         post = Post(blog_id=self._id,
@@ -27,6 +29,11 @@ class Blog(object):
 
     def save_to_mongo(self):
         Database.insert(collection='blogs',
+                        data=self.json())
+    
+    # added remove blog option
+    def remove_from_mongo(self):
+        Database.delete(collection='blogs',
                         data=self.json())
 
     def json(self):
@@ -49,3 +56,7 @@ class Blog(object):
         blogs = Database.find(collection='blogs',
                               query={'author_id': author_id})
         return [cls(**blog) for blog in blogs]
+
+    """
+        Later add more options to find by for blog
+    """

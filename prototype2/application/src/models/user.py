@@ -53,7 +53,7 @@ class User(object):
         # login_valid has already been called
         session['email'] = user_email
         
-
+    # added logout method for user
     @staticmethod
     def logout():
         session['email'] = None
@@ -85,3 +85,4 @@ class User(object):
 
     def save_to_mongo(self):
         Database.insert("users", self.json())
+        

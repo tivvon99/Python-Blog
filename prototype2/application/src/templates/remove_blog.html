@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hello {{ email }}</h1>
+
+    <form action="/blog/delete" method="post">
+        <div class="form-group">
+            <label for="blog_id">Enter Blog ID</label>
+            <input type="text" id="blog_id" class="form-control" name="blog_id">
+        </div>
+        
+        <button type="submit" class="btn btn-success btn-rounded">
+            Delete Blog
+        </button>
+       
+       
+    </form>
+
+    {% for blog in blogs %}
+    <div class="container-md">
+        <h3><a href="/posts/{{ blog._id }}">{{ blog.title }}</a></h3>
+        <p>Description: {{ blog.description }}</p>
+        <p>Blog Id: {{ blog._id }}</p>
+        
+        <a href="/blog/delete">
+            <button type="submit" class="btn btn-success btn-rounded">
+                Delete Blog
+            </button>
+        </a>
+        
+        <hr>
+    </div>
+    {% endfor %}
+
+{% endblock %}
