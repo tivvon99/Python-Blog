@@ -1,3 +1,9 @@
+To use,
+activate virtual .venv in environment and
+download requirements
+
+
+
 web project
 
 prototype
@@ -32,7 +38,7 @@ prototype
 |
 |-- .flaskenv (environment variables)
 |
-|-- .venv (environment to take avoid dependencies)
+|-- .venv (environment to avoid dependencies)
 
 
 What to focus on?

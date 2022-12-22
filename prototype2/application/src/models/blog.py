@@ -7,14 +7,12 @@ __author__ = 'Tivvon'
 
 
 class Blog(object):
-    def __init__(self, author, title, description, author_id, _id=None, date=datetime.datetime.utcnow()):
+    def __init__(self, author, title, description, author_id, _id=None):
         self.author = author
         self.author_id = author_id
         self.title = title
         self.description = description
         self._id = uuid.uuid4().hex if _id is None else _id
-        # added time created to my blog class
-        self.created_date = date
 
     def new_post(self, title, content, date=datetime.datetime.utcnow()):
         post = Post(blog_id=self._id,

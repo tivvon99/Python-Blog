@@ -2,22 +2,29 @@
 
 {% block content %}
 
+    <div class="container-md">
+        <a href="/blogs/new">
+            <button type="submit" class="btn btn-success btn-rounded">
+                Create a new blog.
+            </button>
+        </a>
+        <a href="/blogs/all">
+            <button type="submit" class="btn btn-success btn-rounded">
+                See all blogs.
+            </button>
+        </a>
+    </div>
+
     {% if not blogs %}
 
-    <h1>Looks like you don't have any blogs yet.</h1>
-
-    <a href="/blogs/new">
-        <button type="submit" class="btn btn-success btn-rounded">
-            Create a new blog.
-        </button>
-    </a>
-    <a href="/blogs/all">
-        <button type="submit" class="btn btn-success btn-rounded">
-            Create a new blog.
-        </button>
-    </a>
+    <h1>
+        Looks like you don't have any blogs yet.
+        Create a new one or go look at everyone elses.
+    </h1>
 
     {% else %}
+
+        <h1 class="intro">Here are all of your posted blogs.</h1>
 
         {% for blog in blogs %}
         <div class="container-md">

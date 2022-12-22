@@ -4,7 +4,7 @@ from src.models.blog import Blog
 from src.models.post import Post
 from src.models.user import User
 from newsapi import NewsApiClient
-
+import config
 
 main = Blueprint('main', __name__)
 
@@ -14,7 +14,7 @@ def home_template():
     if not session.get("email"):
         return redirect("login")
     
-    newsapi = NewsApiClient(api_key='c8f4bcf0d4814a4dbe2544d097202089')
+    newsapi = NewsApiClient(config.api_key)
     topheadlines = newsapi.get_top_headlines(sources="al-jazeera-english")
     
     articles = topheadlines['articles']
@@ -57,7 +57,7 @@ def user_blogs(user_id=None):
 
     blogs = user.get_blogs()
 
-    return render_template("user_blogs.html", blogs=blogs, email=user.email)
+    return render_template("user_blogs.html", blogs=blogs)
 
 
 @main.route('/blogs/new', methods=['POST', 'GET'])
@@ -95,21 +95,54 @@ def remove_blog():
 # to show blogs from all users to each other
 @main.route('/blogs/all')
 def display_all_blogs():
-    users = []
+    
+    user_ids = []
     blogs = []
     
     # counts the amount of users in the db
     count = Database.DATABASE['users'].count_documents({})
     print(count)
     
-    users = [None] * count
-    for i in range(count):  # 2 rn
-        # all users
-        users[i] = Database.DATABASE['users'].find({})
+    # got user id
     
-    print(users)
+    for user_id in Database.DATABASE['users'].find({}, {"_id": 1}): # 2 rn
+        # now that we have the user id as value in dicts we need to append to list
+        user_ids.append(user_id['_id'])
         
-    return render_template("all_blogs.html", count=count, users=users)
+    # now that i have all user ids in a list i need to use them to get each users blog
+    for user_id in user_ids:
+        blogs.append(Blog.find_by_author_id(user_id))
+    
+    
+    # blogs[user 1][blog 1]
+    blog_titles = []
+    blog_descriptions = []
+    blog_authors = []
+    
+    # blog_created = [] (Huge Mess)
+    
+    '''
+        Current issue is getting all blogs of each user to
+        iterate. not one blog per usually. Until i come up with
+        dictionary solution, I might be able to brute force it
+        with double for loop in jinja. ALL code here needs to
+        be reoptimized with Dictionary
+    '''
+    
+    
+    for user in range(count):
+        for blog in range(len(blogs[user])):
+            print(len(blogs[user]))
+            blog_titles.append(blogs[user][blog].title)
+            blog_descriptions.append(blogs[user][blog].description)
+            blog_authors.append(blogs[user][blog].author)
+            
+            
+    print(blog_titles, " ")
+    print(blog_descriptions, " ")
+    
+    return render_template("all_blogs.html", blog_titles=blog_titles, blog_descriptions = blog_descriptions,
+                           blog_authors=blog_authors, count = count)
     
 
 @main.route('/posts/<string:blog_id>')
