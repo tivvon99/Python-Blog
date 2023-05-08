@@ -1,57 +1,75 @@
-To use,
-activate virtual .venv in environment and
-download requirements
+# Welcome to my blog
+
+## Technologies Used
+---
+* Python (Flask)
+* MongoDB
+* HTML/Bootstrap
+
+## Purpose
+---
+Gain an understanding of using api's, webservers, routing HTTPS requests and creating a project using a modular approach.
+
+## Layout
+---
+* flask_blog
+    * .venv
+    * flask_session
+    * .flaskenv
+    * requirements.txt
+    * src
+        * common
+        * models
+            * blog.py
+            * post.py
+            * user.py
+        * static
+            * css
+            * img
+            * vids
+        * templates (html)
+            * Going to add soon. Need to reduce some.
+        * app.py (No longer in use)
+        * __init__.py (leverages blueprint)
+        * auth.py   (handles authorization blueprint)
+        * config.py (handles configuration keys)
+        * main.py   (handles main authorization files )
+
+## Directions
+---
+> Okay, so this how I run it. Enter the flask_blog directory. (Assuming only powershell for now).
+>
+>```shell
+>cd flask_blog
+>```
+>
+> Create an environment using python
+>>```Python
+>>python -m venv .venv
+>>```
+>
+> Download requirements
+>>```
+>>pip install -r requirements.txt
+>>```
+>
+> Run the app
+>>```Python
+>>flask run
+>>```
+>
 
 
 
-web project
+# Current focus
 
-prototype
-| 
-|-- src
-|   |
-|   |-- common
-|   |      |
-|   |      |-- database. py
-|   |
-|   |-- models
-|   |     |
-|   |     |-- blog.py
-|   |     |
-|   |     |-- post.py
-|   |     |
-|   |     |-- user.py
-|   |
-|   |-- static
-|   |     |
-|   |     |-- img/vid
-|   |
-|   |-- templates (all html templates)
-|
-|-- init.py (main application)
-|
-|-- app.py (old main application to be removed)
-|
-|-- auth.py (blue print, deals with app auth)
-|
-|-- main.py (deals with main pages need to auth)
-|
-|-- .flaskenv (environment variables)
-|
-|-- .venv (environment to avoid dependencies)
+* Upgrading database features to be more interactive with the site
+    * delete
 
-
-What to focus on?
-
-Upgrading database features to be more interactive with the site?
-- delete
-
-Do I want subposts under blogs? Or do i want a blog
-post to be the main point.
-
-Make sure logic is intact between authorization and main pages. Do I want users to have to sign in? Make sure cookies are being stored properlly as well and dont forget to find a safer place for api key in news posts.
-
-Pages that need design.
-- web dev page
-- support page
-- contact page
+* Adding subpost capability to blog.
+* Clean up blueprint logic with auth and main
+* Think about deployment
+    * Heroku
+    * Netlify
+    * Docker
+    * K8 image
