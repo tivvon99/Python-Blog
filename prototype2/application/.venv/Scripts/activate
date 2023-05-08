@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\tivvo\prototype2\application\.venv"
+VIRTUAL_ENV="C:\Users\tivvo\Documents\GitHub\web-project\prototype2\application\.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

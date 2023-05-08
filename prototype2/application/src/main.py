@@ -4,9 +4,13 @@ from src.models.blog import Blog
 from src.models.post import Post
 from src.models.user import User
 from newsapi import NewsApiClient
-# import config
+
+# imports config file safely using PyPi
+import config
 
 main = Blueprint('main', __name__)
+
+# page to handle users authentification needs
 
 @main.route('/')
 def home_template():
@@ -14,7 +18,7 @@ def home_template():
     if not session.get("email"):
         return redirect("login")
     
-    newsapi = NewsApiClient('c8f4bcf0d4814a4dbe2544d097202089')
+    newsapi = NewsApiClient(api_key=config.api_key)      # updated to fit PyPi syntax
     topheadlines = newsapi.get_top_headlines(sources="al-jazeera-english")
     
     articles = topheadlines['articles']
