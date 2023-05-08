@@ -4,7 +4,7 @@ from src.models.blog import Blog
 from src.models.post import Post
 from src.models.user import User
 from newsapi import NewsApiClient
-import config
+# import config
 
 main = Blueprint('main', __name__)
 
@@ -14,7 +14,7 @@ def home_template():
     if not session.get("email"):
         return redirect("login")
     
-    newsapi = NewsApiClient(config.api_key)
+    newsapi = NewsApiClient('c8f4bcf0d4814a4dbe2544d097202089')
     topheadlines = newsapi.get_top_headlines(sources="al-jazeera-english")
     
     articles = topheadlines['articles']
