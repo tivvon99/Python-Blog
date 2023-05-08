@@ -1,3 +1,7 @@
+'''
+Database object model
+'''
+
 __author__ = 'Tivvon'
 
 import pymongo
