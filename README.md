@@ -76,3 +76,10 @@ Before you proceed, I will state that I have a config.py file to maintain my new
     * Netlify
     * Docker
     * K8 image
+
+* Strengthening blueprints logic
+    * Authentication Blueprint (login, logout, recover password)
+    * Blog Blueprint 
+    * General Blueprint
+    * API for blog blue print?
+    

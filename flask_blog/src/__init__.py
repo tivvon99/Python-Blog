@@ -13,10 +13,18 @@ def create_app():
     It is used to set up pieces of the application required for extended
     functionality. Eg: Database connection and help with authentication.
     
+    A common pattern is creating the application object when the blueprint
+    is imported, but if you moe the creating of this object into a
+    function, you can created mulitple instances of this app later. Better
+    for testing and multiple instances.
+    
     __name__ tells us how to import from files relative to this one.
     
+    Database is initialized by a special method, before_first_request.
     
+    .register_blueprint extends the flask page with its contents.
     """
+    
     app = Flask(__name__)                   # instance of the Flask object
     app.secret_key="California"
     app.permanent_session_lifetime = timedelta(minutes=5)
@@ -34,12 +42,3 @@ def create_app():
     app.register_blueprint(main_blueprint)
 
     return app
-
-
-"""
-    app = Flask(__name__, static_url_path='/static')  # '__main__'
-    app.secret_key = "California"
-
-    if __name__ == '__main__':
-        app.run(port=4995, debug=True)
-"""

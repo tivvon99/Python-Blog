@@ -1,3 +1,12 @@
+"""
+This file serves as the authorization blueprint. It is mean for handle
+application logic for all web pages that require login credentials.
+
+Eg: login.html, forgot_password.html, signup.html
+
+
+"""
+
 from flask import Blueprint, render_template, request, session, make_response, url_for, redirect, flash
 from src.common.database import Database
 from src.models.blog import Blog

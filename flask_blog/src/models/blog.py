@@ -55,6 +55,4 @@ class Blog(object):
                               query={'author_id': author_id})
         return [cls(**blog) for blog in blogs]
 
-    """
-        Later add more options to find by for blog
-    """
+
