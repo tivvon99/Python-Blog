@@ -170,9 +170,6 @@ def create_new_post(blog_id):
         new_post.save_to_mongo()
 
         return make_response(blog_posts(blog_id))
-    
-@main.route('/pricing')
-def pricing():
-    return render_template('pricing.html')
+
 
 

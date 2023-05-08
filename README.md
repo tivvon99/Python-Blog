@@ -35,8 +35,11 @@ Gain an understanding of using api's, webservers, routing HTTPS requests and cre
         * config.py (handles configuration keys)
         * main.py   (handles main authorization files )
 
+
+
 ## Directions
 ---
+Before you proceed, I will state that I have a config.py file to maintain my newsapiclient key. You most likely will have to go to newsapi and get it to utilze the project similarly
 > Okay, so this how I run it. Enter the flask_blog directory. (Assuming only powershell for now).
 >
 >```shell

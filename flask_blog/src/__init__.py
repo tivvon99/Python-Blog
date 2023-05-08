@@ -1,12 +1,3 @@
-'''
-Acts as the central configuration object for the entire application. 
-It is used to set up pieces of the application required for extended
-functionality. Eg: Database connection and help with authentication.
-
-__name__ tells us how to import from files relative to this one.
-
-'''
-
 from flask import Flask, session
 from flask_sqlalchemy import SQLAlchemy
 from src.common.database import Database
@@ -16,6 +7,16 @@ from src.models.user import User
 from datetime import timedelta
 
 def create_app():
+    """ Creates the instance of the Flask Object.
+    
+    Acts as the central configuration object for the entire application. 
+    It is used to set up pieces of the application required for extended
+    functionality. Eg: Database connection and help with authentication.
+    
+    __name__ tells us how to import from files relative to this one.
+    
+    
+    """
     app = Flask(__name__)                   # instance of the Flask object
     app.secret_key="California"
     app.permanent_session_lifetime = timedelta(minutes=5)
